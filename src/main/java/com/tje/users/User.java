@@ -1,5 +1,6 @@
 package com.tje.users;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class User {
@@ -8,9 +9,9 @@ public class User {
     private int age;
     private UserType userType;
 
-    private Date registrationDate;
+    public LocalDateTime registrationDate;
 
-    public User(int id, String name, int age, UserType userType, Date registrationDate) {
+    public User(int id, String name, int age, UserType userType, LocalDateTime registrationDate) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -50,11 +51,11 @@ public class User {
         this.userType = userType;
     }
 
-    public Date getRegistrationDate() {
+    public LocalDateTime getRegistrationDate() {
         return registrationDate;
     }
 
-    public void setRegistrationDate(Date registrationDate) {
+    public void setRegistrationDate(LocalDateTime registrationDate) {
         this.registrationDate = registrationDate;
     }
 

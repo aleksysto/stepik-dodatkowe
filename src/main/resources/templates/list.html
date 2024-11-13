@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista użytkowników</title>
+</head>
+<body>
+<h1>Lista użytkowników</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Lp.</th>
+        <th>Dni od rejestracji</th>
+        <th>Imię</th>
+        <th>ID</th>
+        <th>Wiek</th>
+        <th>Typ użytkownika</th>
+        <th>Data rejestracji</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Wyświetlanie listy użytkowników -->
+    <tr th:each="user, iterStat : ${users}">
+        <td th:text="${iterStat.index + 1}">1</td>
+        <td th:text="${T(java.time.temporal.ChronoUnit).DAYS.between(user.registrationDate, T(java.time.LocalDateTime).now())}">Days Since Registration</td>
+        <td th:text="${user.name}">Jan</td>
+        <td th:text="${user.id}">Id</td>
+        <td>
+        <span th:text="${user.age}">
+    </span>
+        <span th:if="${user.age > 35}"> - Powyżej średniej</span>
+        </td>
+
+        <!-- Wyświetlenie typu użytkownika -->
+        <td>
+            <div th:switch="${user.userType.name()}">
+                <span th:case="'ADMIN'">Administrator</span>
+                <span th:case="'REGISTERED'">zarejestrowany</span>
+                <span th:case="'GUEST'">gosc</span>
+                <span th:case="*">Nieznany</span>
+            </div>
+        </td>
+
+        <!-- Wyświetlenie daty rejestracji w formacie yyyy-MM-dd HH:mm -->
+        <td th:text="${#temporals.format(user.registrationDate, 'yyyy-MM-dd HH:mm')}">2023-01-01 12:00</td>
+
+        <!-- Obliczenie liczby dni od rejestracji -->
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
