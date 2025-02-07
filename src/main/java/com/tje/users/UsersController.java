@@ -17,28 +17,28 @@ import java.util.List;
 @Controller
 public class UsersController {
 
-    // @GetMapping("/")
-    // public String home(Model model) throws ParseException {
-    //     String startDateString = "20/05/2007 07:32";
-    //     DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-    //     Date startDate = df.parse(startDateString);
-    //     LocalDateTime converted = startDate.toInstant()
-    //             .atZone(ZoneId.systemDefault())
-    //             .toLocalDateTime();
-    //     long daysSinceRegistration = ChronoUnit.DAYS.between(converted, LocalDateTime.now());
-    //     User user = new User(2, "Artur", 36, User.UserType.ADMIN,LocalDateTime.of(2008, 11, 21, 12, 21));
-    //     model.addAttribute("user", user);
-    //     model.addAttribute("daysSinceRegistration", daysSinceRegistration);
-    //     String userTypePolish;
-    //     switch (user.getUserType()) {
-    //         case ADMIN: userTypePolish = "Administrator"; break;
-    //         case GUEST: userTypePolish = "Gość"; break;
-    //         case REGISTERED: userTypePolish = "Zarejestrowany"; break;
-    //         default: userTypePolish = "Nieznany"; break;
-    //     }
-    //     model.addAttribute("userTypePolish", userTypePolish);
-    //     return "home";
-    // }
+    @GetMapping("/")
+    public String home(Model model) throws ParseException {
+        String startDateString = "20/05/2007 07:32";
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        Date startDate = df.parse(startDateString);
+        LocalDateTime converted = startDate.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDateTime();
+        long daysSinceRegistration = ChronoUnit.DAYS.between(converted, LocalDateTime.now());
+        User user = new User(2, "Artur", 36, User.UserType.ADMIN,LocalDateTime.of(2008, 11, 21, 12, 21));
+        model.addAttribute("user", user);
+        model.addAttribute("daysSinceRegistration", daysSinceRegistration);
+        String userTypePolish;
+        switch (user.getUserType()) {
+            case ADMIN: userTypePolish = "Administrator"; break;
+            case GUEST: userTypePolish = "Gość"; break;
+            case REGISTERED: userTypePolish = "Zarejestrowany"; break;
+            default: userTypePolish = "Nieznany"; break;
+        }
+        model.addAttribute("userTypePolish", userTypePolish);
+        return "home";
+    }
     @GetMapping("/list")
     public String list(Model model) throws ParseException {
         List<User> users = Arrays.asList(
